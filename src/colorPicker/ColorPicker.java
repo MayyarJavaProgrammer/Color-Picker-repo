@@ -11,8 +11,10 @@ import com.formdev.flatlaf.intellijthemes.FlatDraculaIJTheme;
 import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -21,6 +23,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author mear
  */
 public class ColorPicker extends javax.swing.JFrame {
+
+    String colorRGBValue = "[127,127,127]";
+    String colorHEXValue = "#7F7F7F";
 
     /**
      * Creates new form ColorChooser
@@ -47,6 +52,8 @@ public class ColorPicker extends javax.swing.JFrame {
         selectedColor = new javax.swing.JPanel();
         selectedColorRGBValue = new javax.swing.JLabel();
         selectedColorHaxValue = new javax.swing.JLabel();
+        copyHEXvalue = new javax.swing.JButton();
+        copyRGBvalue = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Color Picker");
@@ -99,7 +106,7 @@ public class ColorPicker extends javax.swing.JFrame {
         selectedColor.setLayout(selectedColorLayout);
         selectedColorLayout.setHorizontalGroup(
             selectedColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 269, Short.MAX_VALUE)
         );
         selectedColorLayout.setVerticalGroup(
             selectedColorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,6 +120,22 @@ public class ColorPicker extends javax.swing.JFrame {
         selectedColorHaxValue.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
         selectedColorHaxValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         selectedColorHaxValue.setText("HEX : #7F7F7F");
+
+        copyHEXvalue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colorPicker/icons/contentCopy.png"))); // NOI18N
+        copyHEXvalue.setBorder(null);
+        copyHEXvalue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyHEXvalueActionPerformed(evt);
+            }
+        });
+
+        copyRGBvalue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colorPicker/icons/contentCopy.png"))); // NOI18N
+        copyRGBvalue.setBorder(null);
+        copyRGBvalue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyRGBvalueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,12 +152,18 @@ public class ColorPicker extends javax.swing.JFrame {
                     .addComponent(greenColor, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                     .addComponent(blueColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(redColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(selectedColor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selectedColorRGBValue, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                    .addComponent(selectedColorHaxValue, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(selectedColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(selectedColorHaxValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectedColorRGBValue, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(copyHEXvalue)
+                            .addComponent(copyRGBvalue))))
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,10 +189,14 @@ public class ColorPicker extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(selectedColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectedColorRGBValue)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(selectedColorHaxValue)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(copyRGBvalue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectedColorRGBValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(selectedColorHaxValue)
+                            .addComponent(copyHEXvalue))))
+                .addContainerGap())
         );
 
         pack();
@@ -181,6 +214,14 @@ public class ColorPicker extends javax.swing.JFrame {
     private void blueColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_blueColorAdjustmentValueChanged
         getColor();
     }//GEN-LAST:event_blueColorAdjustmentValueChanged
+
+    private void copyHEXvalueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyHEXvalueActionPerformed
+        copyValue(evt);
+    }//GEN-LAST:event_copyHEXvalueActionPerformed
+
+    private void copyRGBvalueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyRGBvalueActionPerformed
+        copyValue(evt);
+    }//GEN-LAST:event_copyRGBvalueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,9 +242,20 @@ public class ColorPicker extends javax.swing.JFrame {
         selectedColorRGBValue.setText("RGB : " + colorRGBValue);
         selectedColorHaxValue.setText("HEX : " + colorHEXValue.toUpperCase());
     }
-    
+
+    public void copyValue(ActionEvent ActionEvent) {
+        if (ActionEvent.getSource() == copyRGBvalue) {
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorRGBValue), null);
+        } else {
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorHEXValue), null);
+        }
+
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Scrollbar blueColor;
+    private javax.swing.JButton copyHEXvalue;
+    private javax.swing.JButton copyRGBvalue;
     private java.awt.Scrollbar greenColor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

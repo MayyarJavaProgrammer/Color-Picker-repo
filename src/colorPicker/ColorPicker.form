@@ -37,13 +37,22 @@
                   <Component id="blueColor" alignment="0" max="32767" attributes="0"/>
                   <Component id="redColor" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="selectedColor" max="32767" attributes="0"/>
-                  <Component id="selectedColorRGBValue" pref="269" max="32767" attributes="0"/>
-                  <Component id="selectedColorHaxValue" alignment="1" max="32767" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="selectedColor" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="selectedColorHaxValue" max="32767" attributes="0"/>
+                          <Component id="selectedColorRGBValue" pref="219" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="copyHEXvalue" min="-2" max="-2" attributes="0"/>
+                          <Component id="copyRGBvalue" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -77,12 +86,18 @@
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="selectedColor" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="selectedColorRGBValue" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="selectedColorHaxValue" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="copyRGBvalue" max="32767" attributes="0"/>
+                          <Component id="selectedColorRGBValue" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="selectedColorHaxValue" min="-2" max="-2" attributes="0"/>
+                          <Component id="copyHEXvalue" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -164,7 +179,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="269" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -191,6 +206,32 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="HEX : #7F7F7F"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="copyHEXvalue">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/colorPicker/icons/contentCopy.png"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyHEXvalueActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="copyRGBvalue">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/colorPicker/icons/contentCopy.png"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="copyRGBvalueActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
