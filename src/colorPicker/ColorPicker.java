@@ -192,7 +192,16 @@ public class ColorPicker extends javax.swing.JFrame {
         });
 
     }
-   
+
+    private void getColor() {
+        Color color = new Color(redColor.getValue(), greenColor.getValue(), blueColor.getValue());
+        selectedColor.setBackground(color);
+        String colorRGBValue = "[" + redColor.getValue() + "," + greenColor.getValue() + "," + blueColor.getValue() + "]";
+        String colorHEXValue = "#" + Integer.toHexString(color.getRGB()).substring(2);
+        selectedColorRGBValue.setText("RGB : " + colorRGBValue);
+        selectedColorHaxValue.setText("HEX : " + colorHEXValue.toUpperCase());
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Scrollbar blueColor;
     private java.awt.Scrollbar greenColor;
