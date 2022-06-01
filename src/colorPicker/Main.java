@@ -22,15 +22,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author mear
  */
-public class ColorPicker extends javax.swing.JFrame {
-
-    String colorRGBValue = "[127,127,127]";
-    String colorHEXValue = "#7F7F7F";
-
+public class Main extends javax.swing.JFrame {
+    Picker p = new Picker();
     /**
      * Creates new form ColorChooser
-     */
-    public ColorPicker() {
+     */ 
+    public Main() {
         initComponents();
     }
 
@@ -204,23 +201,23 @@ public class ColorPicker extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void redColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_redColorAdjustmentValueChanged
-        getColor();
+
     }//GEN-LAST:event_redColorAdjustmentValueChanged
 
     private void greenColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_greenColorAdjustmentValueChanged
-        getColor();
+
     }//GEN-LAST:event_greenColorAdjustmentValueChanged
 
     private void blueColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_blueColorAdjustmentValueChanged
-        getColor();
+
     }//GEN-LAST:event_blueColorAdjustmentValueChanged
 
     private void copyHEXvalueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyHEXvalueActionPerformed
-        copyValue(evt);
+
     }//GEN-LAST:event_copyHEXvalueActionPerformed
 
     private void copyRGBvalueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyRGBvalueActionPerformed
-        copyValue(evt);
+ 
     }//GEN-LAST:event_copyRGBvalueActionPerformed
 
     /**
@@ -229,7 +226,7 @@ public class ColorPicker extends javax.swing.JFrame {
     public static void main(String args[]) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new ColorPicker().setVisible(true);
+            new Main().setVisible(true);
         });
 
     }
@@ -245,9 +242,9 @@ public class ColorPicker extends javax.swing.JFrame {
 
     public void copyValue(ActionEvent ActionEvent) {
         if (ActionEvent.getSource() == copyRGBvalue) {
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorRGBValue), null);
+            //Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorRGBValue), null);
         } else {
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorHEXValue), null);
+           // Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorHEXValue), null);
         }
 
     }
