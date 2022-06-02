@@ -2,48 +2,85 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package colorPicker;
+package ColorPicker;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author mear
  */
 public class Picker {
-    
-    String colorRGBValue;
-    String colorHEXValue;
-    Color color;
-    
+
+    private String colorRGBValue;
+    private String colorHEXValue;
+    private Color SelectedColor;
+    private int redColor;
+    private int greenColor;
+    private int blueColor;
+
     public Picker() {
+        this.setRedColor(127);
+        this.setGreenColor(127);
+        this.setBlueColor(127);
         this.setColorRGBValue("[127,127,127]");
         this.setColorHEXValue("#7F7F7F");
-        this.setColor(new Color(127, 127, 127));
+        this.setSelectedColor(new Color(this.getRedColor(), this.getGreenColor(), this.getBlueColor()));
     }
-    
+
+    public Color getSelectedColor() {
+        return SelectedColor;
+    }
+
+    public void setSelectedColor(Color Selectedcolor) {
+        this.SelectedColor = Selectedcolor;
+    }
+
+    public int getRedColor() {
+        return redColor;
+    }
+
+    public void setRedColor(int redColor) {
+        this.redColor = redColor;
+    }
+
+    public int getGreenColor() {
+        return greenColor;
+    }
+
+    public void setGreenColor(int greenColor) {
+        this.greenColor = greenColor;
+    }
+
+    public int getBlueColor() {
+        return blueColor;
+    }
+
+    public void setBlueColor(int blueColor) {
+        this.blueColor = blueColor;
+    }
+
     public String getColorRGBValue() {
         return colorRGBValue;
     }
-    
+
     public void setColorRGBValue(String colorRGBValue) {
         this.colorRGBValue = colorRGBValue;
     }
-    
+
     public String getColorHEXValue() {
         return colorHEXValue;
     }
-    
+
     public void setColorHEXValue(String colorHEXValue) {
         this.colorHEXValue = colorHEXValue;
     }
     
-    public Color getColor() {
-        return color;
+    public void copyValue(String value) {
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(value), null);
     }
-    
-    public void setColor(Color color) {
-        this.color = color;
-    }
-    
+
 }

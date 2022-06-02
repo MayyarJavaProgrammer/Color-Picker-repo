@@ -42,7 +42,7 @@
                   <Component id="selectedColor" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="selectedColorHaxValue" max="32767" attributes="0"/>
+                          <Component id="selectedColorHEXValue" max="32767" attributes="0"/>
                           <Component id="selectedColorRGBValue" pref="219" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="selectedColorHaxValue" min="-2" max="-2" attributes="0"/>
+                          <Component id="selectedColorHEXValue" min="-2" max="-2" attributes="0"/>
                           <Component id="copyHEXvalue" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -198,7 +198,7 @@
         <Property name="text" type="java.lang.String" value="RGB : [127, 127, 127]"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="selectedColorHaxValue">
+    <Component class="javax.swing.JLabel" name="selectedColorHEXValue">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="13" style="0"/>

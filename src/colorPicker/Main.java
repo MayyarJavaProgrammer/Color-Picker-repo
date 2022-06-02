@@ -23,10 +23,12 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author mear
  */
 public class Main extends javax.swing.JFrame {
-    Picker p = new Picker();
+
+    Picker picker = new Picker();
+
     /**
      * Creates new form ColorChooser
-     */ 
+     */
     public Main() {
         initComponents();
     }
@@ -48,7 +50,7 @@ public class Main extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         selectedColor = new javax.swing.JPanel();
         selectedColorRGBValue = new javax.swing.JLabel();
-        selectedColorHaxValue = new javax.swing.JLabel();
+        selectedColorHEXValue = new javax.swing.JLabel();
         copyHEXvalue = new javax.swing.JButton();
         copyRGBvalue = new javax.swing.JButton();
 
@@ -114,9 +116,9 @@ public class Main extends javax.swing.JFrame {
         selectedColorRGBValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         selectedColorRGBValue.setText("RGB : [127, 127, 127]");
 
-        selectedColorHaxValue.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
-        selectedColorHaxValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        selectedColorHaxValue.setText("HEX : #7F7F7F");
+        selectedColorHEXValue.setFont(new java.awt.Font("Trebuchet MS", 0, 13)); // NOI18N
+        selectedColorHEXValue.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        selectedColorHEXValue.setText("HEX : #7F7F7F");
 
         copyHEXvalue.setIcon(new javax.swing.ImageIcon(getClass().getResource("/colorPicker/icons/contentCopy.png"))); // NOI18N
         copyHEXvalue.setBorder(null);
@@ -154,7 +156,7 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(selectedColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(selectedColorHaxValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(selectedColorHEXValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(selectedColorRGBValue, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +193,7 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(selectedColorRGBValue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(selectedColorHaxValue)
+                            .addComponent(selectedColorHEXValue)
                             .addComponent(copyHEXvalue))))
                 .addContainerGap())
         );
@@ -201,23 +203,26 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void redColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_redColorAdjustmentValueChanged
-
+        picker.setRedColor(redColor.getValue());
+        setLabelText();
     }//GEN-LAST:event_redColorAdjustmentValueChanged
 
     private void greenColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_greenColorAdjustmentValueChanged
-
+        picker.setGreenColor(greenColor.getValue());
+        setLabelText();
     }//GEN-LAST:event_greenColorAdjustmentValueChanged
 
     private void blueColorAdjustmentValueChanged(java.awt.event.AdjustmentEvent evt) {//GEN-FIRST:event_blueColorAdjustmentValueChanged
-
+        picker.setBlueColor(blueColor.getValue());
+        setLabelText();
     }//GEN-LAST:event_blueColorAdjustmentValueChanged
 
     private void copyHEXvalueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyHEXvalueActionPerformed
-
+        picker.copyValue(picker.getColorHEXValue());
     }//GEN-LAST:event_copyHEXvalueActionPerformed
 
     private void copyRGBvalueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyRGBvalueActionPerformed
- 
+        picker.copyValue(picker.getColorRGBValue());
     }//GEN-LAST:event_copyRGBvalueActionPerformed
 
     /**
@@ -231,22 +236,16 @@ public class Main extends javax.swing.JFrame {
 
     }
 
-    private void getColor() {
-        Color color = new Color(redColor.getValue(), greenColor.getValue(), blueColor.getValue());
-        selectedColor.setBackground(color);
-        String colorRGBValue = "[" + redColor.getValue() + "," + greenColor.getValue() + "," + blueColor.getValue() + "]";
-        String colorHEXValue = "#" + Integer.toHexString(color.getRGB()).substring(2);
-        selectedColorRGBValue.setText("RGB : " + colorRGBValue);
-        selectedColorHaxValue.setText("HEX : " + colorHEXValue.toUpperCase());
-    }
-
-    public void copyValue(ActionEvent ActionEvent) {
-        if (ActionEvent.getSource() == copyRGBvalue) {
-            //Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorRGBValue), null);
-        } else {
-           // Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(colorHEXValue), null);
-        }
-
+    public void setLabelText() {
+        //set/get color value
+        picker.setSelectedColor(new Color(picker.getRedColor(), picker.getGreenColor(), picker.getBlueColor()));
+        selectedColor.setBackground(picker.getSelectedColor());
+        //set/get RGB value
+        picker.setColorRGBValue("[" + picker.getRedColor() + "," + picker.getGreenColor() + "," + picker.getBlueColor() + "]");
+        selectedColorRGBValue.setText("RGB : " + picker.getColorRGBValue());
+        //set/get HEX value
+        picker.setColorHEXValue("#" + Integer.toHexString(picker.getSelectedColor().getRGB()).substring(2));
+        selectedColorHEXValue.setText("HEX : " + picker.getColorHEXValue().toUpperCase());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -259,7 +258,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private java.awt.Scrollbar redColor;
     private javax.swing.JPanel selectedColor;
-    private javax.swing.JLabel selectedColorHaxValue;
+    private javax.swing.JLabel selectedColorHEXValue;
     private javax.swing.JLabel selectedColorRGBValue;
     // End of variables declaration//GEN-END:variables
 }
